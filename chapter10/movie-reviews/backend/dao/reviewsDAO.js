@@ -53,7 +53,7 @@ reviewDAO: ${e}`)
         try {
             const deleteResponse = await reviews.deleteOne({
                 _id: ObjectId(reviewId),//specify ObjectId(reviewId)
-                user_id: userId, //to chekc reviewId and created by userId 
+                user_id: userId, //to check reviewId and created by userId 
             })
             return deleteResponse//and delete it if it exists
         }

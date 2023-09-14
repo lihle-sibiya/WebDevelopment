@@ -6,7 +6,7 @@ const router = express.Router() // get access to express router
 router.route('/').get(MoviesController.apiGetMovies)//moviesContorller called
 
 router
-    .route("/review")//route revies handles post, put and delete
+    .route('/review')//route reviews handles post, put and delete
     .post(ReviewsController.apiPostReview)//post request:call apiPostReview
     .put(ReviewsController.apiUpdateReview)
     .delete(ReviewsController.apiDeleteReview)
