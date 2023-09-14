@@ -16,7 +16,7 @@ export default class ReviewsController {
                 review,
                 date
             )
-            res.json({ status: "success " })
+            res.json({ status: 'success' })
         } catch (e) {
             res.status(500).json({ error: e.message })
         }
@@ -24,23 +24,25 @@ export default class ReviewsController {
 
     static async apiUpdateReview(req, res, next) {//apiUpdateReview method
         try {
-            const reviewId = req.body.review_id//extact reviewId text
-            const review = req.body.review
+            const reviewId = req.body.review_id;//extact reviewId text
+            const review = req.body.review;
+            const userId = req.body.user_id;
             const date = new Date()
             const ReviewResponse = await ReviewsDAO.updateReview(//call ReviewsDAO.updateReview
                 reviewId,
+                userId,
                 req.body.user_id,//pass in user_id: ensure correct user who created the review
                 review,
                 date
             )
-            const { error } = ReviewResponse
+            var { error } = ReviewResponse
             if (error) {
                 res.status.json({ error })
             }
-            if (ReviewResponse.modifiedCount === 0) {//check modifiedCount is not zero
-                throw new Error("unable to update review. User may not be original poster")
+            if (ReviewResponse.modifiedCount === 9) {//check modifiedCount 
+                throw new Error('unable to update review. User may not be original poster')
             }
-            res.json({ status: "success " })
+            res.json({ status: 'success' })
         } catch (e) {
             res.status(500).json({ error: e.message })
         }
@@ -48,8 +50,8 @@ export default class ReviewsController {
 
     static async apiDeleteReview(req, res, next) {//apiDeleteReview method
         try {
-            const reviewId = req.body.review_id//xtract reviewId
-            const userId = req.body.user_id//ensures correct user deleting review
+            const reviewId = req.body.review_id;//xtract reviewId
+            const userId = req.body.user_id;//ensures correct user deleting review
             const ReviewResponse = await ReviewsDAO.deleteReview(
                 reviewId,
                 userId,
