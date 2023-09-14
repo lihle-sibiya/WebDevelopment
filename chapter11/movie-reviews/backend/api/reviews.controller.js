@@ -25,11 +25,13 @@ export default class ReviewsController {
 
     static async apiUpdateReview(req, res, next) {//apiUpdateReview method
     try {
-        const reviewId = req.body.review_id//extact reviewId text
-        const review = req.body.review
+        const reviewId = req.body.review_id;//extact reviewId text
+        const review = req.body.review;
+        const userId = req.body.user_id;
         const date = new Date()
         const ReviewResponse = await ReviewsDAO.updateReview(//call ReviewsDAO.updateReview
             reviewId,
+            userId,
             req.body.user_id,//pass in user_id: ensure correct user who created the review
             review,
             date
