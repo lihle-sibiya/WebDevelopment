@@ -3,32 +3,35 @@ import './App.css';
 import React from 'react';
 import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import AddReview from "./components/add-review";
+import MoviesList from "./components/movies-list";
+import Movie from "./components/movie";
+import Login from "./components/login";
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
 
 function App() {
   return (
     <div className="App">
-      Hello World
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand>Movie Reviews</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link>
+              <Link to={"/movies"}>Movies</Link>{/*route to movies component*/}
+            </Nav.Link>
+            <Nav.Link>
+              {user ? (
+                <a>Logout User</a>
+              ) : (
+                <Link to={"/login"}>Login</Link>
+              )}
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     </div>
   );
 }
