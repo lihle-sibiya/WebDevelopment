@@ -1,4 +1,4 @@
-let movies
+let movies;
 export default class MoviesDAO {
     static async injectDB(conn) {
         if (movies) {//if moviews reference exists
@@ -19,7 +19,7 @@ export default class MoviesDAO {
         page = 0,
         moviesPerPage = 20, // will only get 20 movies at once
     } = {}) {
-        let query 
+        let query; 
         if (filters) {//filters object
             if ("title" in filters) {//check if title filter
                 query = { $text: { $search: filters['title'] } }//query variable will be empty unless user specifies filter
@@ -28,7 +28,7 @@ export default class MoviesDAO {
             }
         }
 
-        let cursor //all movies found in query: assign to cursor to reduce bandwith and memory consumption
+        let cursor; //all movies found in query: assign to cursor to reduce bandwith and memory consumption
         try {
             cursor = await movies
                 .find(query)
