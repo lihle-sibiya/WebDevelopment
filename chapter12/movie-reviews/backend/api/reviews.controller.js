@@ -9,13 +9,13 @@ export default class ReviewsController {
                 name: req.body.name,
                 _id: req.body.user_id
             }
-            const date = new Date()
+            const date = new Date();
             const ReviewResponse = await ReviewsDAO.addReview(//send info to ReviewsDAO
                 movieId,
                 userInfo,
                 review,
                 date
-            )
+            );
             res.json({ status: 'success' })
         } catch (e) {
             res.status(500).json({ error: e.message })
@@ -39,7 +39,7 @@ export default class ReviewsController {
             if (error) {
                 res.status.json({ error })
             }
-            if (ReviewResponse.modifiedCount === 9) {//check modifiedCount 
+            if (ReviewResponse.modifiedCount === 0) {//check modifiedCount 
                 throw new Error('unable to update review. User may not be original poster')
             }
             res.json({ status: 'success' })
@@ -55,10 +55,13 @@ export default class ReviewsController {
             const ReviewResponse = await ReviewsDAO.deleteReview(
                 reviewId,
                 userId,
-            )
-            res.json({ status: "success " })
+            );
+            console.log('Review deletion response:', ReviewResponse);
+
+            res.json({ status: "success " });
         } catch (e) {
-            res.status(500).json({ error: e.message })
+            console.error(`Error deleting review: ${e.message}`);
+            res.status(500).json({ error: e.message });
         }
     }
 }
