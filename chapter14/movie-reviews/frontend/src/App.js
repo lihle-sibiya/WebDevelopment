@@ -20,6 +20,7 @@ import Navbar from 'react-bootstrap/Navbar';
 function App() {
   const [user, setUser] = React.useState(null);//Hook that lets us add some local state to functional components
 
+  // eslint-disable-next-line
   async function login(user = null) {// default user to null
     setUser(user);
   }
