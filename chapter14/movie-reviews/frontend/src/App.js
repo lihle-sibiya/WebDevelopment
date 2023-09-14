@@ -12,6 +12,16 @@ import Navbar from 'react-bootstrap/Navbar';
 
 
 function App() {
+  const [user, setUser] = React.useState(null);//Hook that lets us add some local state to functional components
+
+  async function login(user = null) {// default user to null
+    setUser(user);
+  }
+
+  async function logout() {
+    setUser(null);
+  }
+
   return (
     <div className="App">
       <Navbar bg="light" expand="lg">
@@ -22,12 +32,8 @@ function App() {
             <Nav.Link>
               <Link to={"/movies"}>Movies</Link>{/*route to movies component*/}
             </Nav.Link>
-            <Nav.Link>
-              {user ? (
-                <a>Logout User</a>
-              ) : (
-                <Link to={"/login"}>Login</Link>
-              )}
+            <Nav.Link>{/*if logged in show logout: or show log in if not*/}
+              {user ? (<button onClick={logout}>Logout User</button>) : (<Link to={"/login"}>Login</Link>)}
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
