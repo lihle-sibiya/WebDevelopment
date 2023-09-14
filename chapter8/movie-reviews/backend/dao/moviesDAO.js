@@ -6,7 +6,8 @@ export default class MoviesDAO {
         }
         try {//if datatabase exists: return movies data
             movies = await conn.db(process.env.MOVIEREVIEWS_NS)
-                .collection('movies')
+                .collection('movies');
+                console.log('Connected to MoviesDAO')
         }
         catch (e) {//error handling if movies reference does not exist
             console.error(`unable to connect in MoviesDAO: ${e}`)
