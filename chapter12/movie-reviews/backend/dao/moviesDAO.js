@@ -1,16 +1,15 @@
 import mongodb from "mongodb";
 
-const ObjectId = mongodb.ObjectID;
+const ObjectId = mongodb.ObjectId;
 let movies;
 
 export default class MoviesDAO {
     static async injectDB(conn) {
         if (movies) {//if moviews reference exists
-            return
+            return;
         }
         try {//if datatabase exists: return movies data
-            movies = await conn.db(process.env.MOVIEREVIEWS_NS)
-                .collection('movies')
+            movies = await conn.db(process.env.MOVIEREVIEWS_NS).collection('movies')
         }
         catch (e) {//error handling if movies reference does not exist
             console.error(`unable to connect in MoviesDAO: ${e}`);
@@ -26,19 +25,19 @@ export default class MoviesDAO {
         let query;
         if (filters) {//filters object
             if ("title" in filters) {//check if title filter
-                query = { $text: { $search: filters['title'] } }//query variable will be empty unless user specifies filter
+                query = { $text: { $search: filters['title'] } }
             } else if ("rated" in filters) {
                 query = { "rated": { $eq: filters['rated'] } }
             }
         }
 
-        let cursor //all movies found in query: assign to cursor to reduce bandwith and memory consumption
+        let cursor 
         try {
             cursor = await movies
                 .find(query)
 
-                .limit(moviesPerPage)//limit method: cap nunber of movies returned(documents)
-                .skip(moviesPerPage * page)//help get specific page result in fornt end: eg page 1
+                .limit(moviesPerPage)
+                .skip(moviesPerPage * page)
             const moviesList = await cursor.toArray();
             const totalNumMovies = await movies.countDocuments(query);//gets total number of movies
             return { moviesList, totalNumMovies }//return moviesList and total num of movies into object
@@ -61,7 +60,7 @@ export default class MoviesDAO {
         }
     }
 
-    static async getMovieById(id) {//getMovieById
+    static async getMovieById(id) {
         try {
             return await movies.aggregate([//aggregate to provide a sequence of data aggregation operations
                 {
