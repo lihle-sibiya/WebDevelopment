@@ -1,6 +1,6 @@
-import axios from "axios"; //library for sending get, post, put and delete request
+import axios from "axios"; 
 
-class MovieDataService { //has functions making API calls to the backend endpoints
+class MovieDataService { 
     getAll(page = 0) {
         return axios.get(`http://localhost:5000/api/v1/movies?page=${page}`);
     }
@@ -33,5 +33,5 @@ class MovieDataService { //has functions making API calls to the backend endpoin
     }
 }
 
-const movieDataService = new MovieDataService();//Warning: Assign instance to a variable before exporting as module default
+const movieDataService = new MovieDataService();
 export default movieDataService;
