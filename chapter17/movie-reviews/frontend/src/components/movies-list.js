@@ -114,12 +114,12 @@ const MoviesList = props => {
                         return (
                             <Col key={movie._id}>{/*key - Reaact to update list of movies*/}
                                 <Card style={{ width: '18rem' }}>
-                                    <Card.Img src={movie.poster + "/100px180"} />
+                                    <Card.Img src={movie.poster +"/100px180"} />
                                     <Card.Body>
                                         <Card.Title>{movie.title}</Card.Title>
                                         <Card.Text>Rating: {movie.rated}</Card.Text>
                                         <Card.Text>{movie.plot}</Card.Text>
-                                        <Link to={"/movies/" + movie._id}>View Reviews</Link>
+                                        <Link to={"/movies/"+ movie._id} >View Reviews</Link>
                                     </Card.Body>
                                 </Card>
                             </Col>

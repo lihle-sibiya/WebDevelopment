@@ -35,3 +35,4 @@ class MovieDataService {
 
 const movieDataService = new MovieDataService();
 export default movieDataService;
+
