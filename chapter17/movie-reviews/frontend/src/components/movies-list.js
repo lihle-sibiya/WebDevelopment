@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MovieDataService from "../services/movies";
 import { Link } from "react-router-dom";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
+import {Form, Button, Col, Row, Container, Card } from 'react-bootstrap';
 
 
 const MoviesList = props => {
@@ -54,7 +49,7 @@ const MoviesList = props => {
     };
 
     const find = (query, by) => {//gives search value entered by user: title/rated
-        MovieDataService.find(query, by)//find() calls backsend API
+        MovieDataService.find(query, by)//find() calls backend API
             .then(response => {
                 console.log(response.data)
                 setMovies(response.data.movies)
