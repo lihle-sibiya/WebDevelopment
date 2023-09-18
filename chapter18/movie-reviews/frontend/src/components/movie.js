@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import MovieDataService from '../services/movies'
 import { Link } from 'react-router-dom'
-import {Card, Container, Media, Button, Row, Col, Image }from 'react-bootstrap';
+import { Card, Container, Media, Button, Row, Col, Image } from 'react-bootstrap';
 
 
 
@@ -31,20 +31,7 @@ const Movie = props => {
         getMovie(props.match.params.id)//holds the movie id changes
     }, [props.match.params.id])//so that it is called only once when movie id changes
 
-    const deleteReview = (reviewId, index) => {// need index of the review from the reviews array
-        MovieDataService.deleteReview(reviewId, props.user.id)
-            .then(response => {
-                setMovie((prevState) => {
-                    prevState.reviews.splice(index, 1)
-                    return ({
-                        ...prevState
-                    })
-                })
-            })
-            .catch(e => {
-                console.log(e)
-            })
-    }
+
 
     return (
         <div>
@@ -66,30 +53,6 @@ const Movie = props => {
                         </Card>
                         <br></br>
                         <h2>Reviews</h2>
-                        <br></br>
-                        {movie.reviews.map((review, index) => {
-                            return (
-                                <Media key={index}>
-                                    <Media.Body>
-                                        <h5>{review.name + " reviewed on " + review.date}</h5>
-                                        <p>
-                                            {review.review}
-                                        </p>
-                                        {props.user && props.user.id === review.user_id &&
-                                            <Row>
-                                                <Col><Link to={{
-                                                    pathname: "/movies/" + props.match.params.id + "/review",
-                                                    state: {
-                                                        currentReview: review
-                                                    }
-                                                }}>Edit</Link></Col>
-                                                <Col><Button variant="link" onClick={() => deleteReview(review._id, index)}>Delete</Button></Col>
-                                            </Row>
-                                        }
-                                    </Media.Body>
-                                </Media>
-                            )
-                        })}
                     </Col>
                 </Row>
             </Container>
