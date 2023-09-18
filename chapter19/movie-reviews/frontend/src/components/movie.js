@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import MovieDataService from '../services/movies'
 import { Link } from 'react-router-dom'
 import {Card, Container, Media, Button, Row, Col, Image }from 'react-bootstrap';
-
+import moment from 'moment';
 
 
 
@@ -71,11 +71,11 @@ const Movie = props => {
                             return (
                                 <Media key={index}>
                                     <Media.Body>
-                                        <h5>{review.name + " reviewed on " + review.date}</h5>
+                                        <h5>{review.name + " reviewed on " + review.date}{moment(review.date).format("Do MMMM YYYY")}</h5>
                                         <p>
                                             {review.review}
                                         </p>
-                                        {props.user && props.user.id === review.user_id &&
+                                        {props.user && props.user.id === review.user_id &&//check if review belongs to user
                                             <Row>
                                                 <Col><Link to={{
                                                     pathname: "/movies/" + props.match.params.id + "/review",
