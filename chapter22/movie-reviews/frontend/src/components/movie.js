@@ -32,7 +32,7 @@ const Movie = props => {
     }, [props.match.params.id])//so that it is called only once when movie id changes
 
     const deleteReview = (reviewId, index) => {// need index of the review from the reviews array
-        MovieDataService.deleteReview(reviewId, props.user.id)
+        MovieDataService.deleteReview(reviewId, props.user.id)//call deleteReview in MovieDataService which calls the delete API endpoint
             .then(response => {
                 setMovie((prevState) => {
                     prevState.reviews.splice(index, 1)
@@ -83,6 +83,7 @@ const Movie = props => {
                                                         currentReview: review
                                                     }
                                                 }}>Edit</Link></Col>
+                                                {/*pass in the review id and the index received from the movie.reviews.map*/}
                                                 <Col><Button variant="link" onClick={() => deleteReview(review._id, index)}>Delete</Button></Col>
                                             </Row>
                                         }
