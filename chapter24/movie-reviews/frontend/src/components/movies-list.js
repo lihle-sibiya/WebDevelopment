@@ -13,6 +13,11 @@ const MoviesList = props => {
 
    const [currentPage, setCurrentPage] = useState(0);//keep track of current page shown
    const [entriesPerPage, setEntriesPerPage] = useState(0); //particular page
+   const [currentSearchMode, setCurrentSearchMode] = useState("");//can findByTitle or by Rating
+
+   useEffect(() => {
+      setCurrentPage(0)
+   }, [currentSearchMode])//add useEffect whenever currentSearchMode changes
 
    useEffect(() => {
       retrieveMovies()
@@ -23,7 +28,18 @@ const MoviesList = props => {
       retrieveMovies()
    }, [currentPage])//when currentPage changes value: retrieveMovies will be called
 
+
+   const retrieveNextPage = () => {
+      if (currentSearchMode === "findByTitle")
+         findByTitle()
+      else if (currentSearchMode === "findByRating")
+         findByRating()
+      else
+         retrieveMovies()
+   }
+
    const retrieveMovies = () => {
+      setCurrentSearchMode("")
       MovieDataService.getAll(currentPage)
          .then(response => {
             console.log(response.data)
@@ -60,7 +76,7 @@ const MoviesList = props => {
 
 
    const find = (query, by) => {
-      MovieDataService.find(query, by)
+      MovieDataService.find(query, by, currentPage)//addd currentPage argument
          .then(response => {
             console.log(response.data)
             setMovies(response.data.movies)
@@ -71,9 +87,11 @@ const MoviesList = props => {
    }
    // find function sypported by below two methods
    const findByTitle = () => {
-      find(searchTitle, "title")
+      setCurrentSearchMode("findByTitle")
+      find(searchTitle, "title")// Pass the searchTitle and currentPage to the API call
    }
    const findByRating = () => {
+      setCurrentSearchMode("findByRating")
       if (searchRating === "All Ratings") {
          retrieveMovies()
       }
@@ -161,3 +179,6 @@ const MoviesList = props => {
 
 
 export default MoviesList;
+
+
+
