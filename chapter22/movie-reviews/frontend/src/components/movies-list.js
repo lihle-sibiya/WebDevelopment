@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import MovieDataService from "../services/movies"
-import { Link } from "react-router-dom"
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
+import React, { useState, useEffect } from 'react';
+import MovieDataService from "../services/movies";
+import { Link } from "react-router-dom";
+import { Form, Button, Col, Row, Container, Card } from 'react-bootstrap';
+
 
 const MoviesList = props => {
 
