@@ -71,17 +71,13 @@ const Movie = props => {
                             return (
                                 <Media key={index}>
                                     <Media.Body>
-                                        <h5>{review.name + " reviewed on " + review.date}{moment(review.date).format("Do MMMM YYYY")}</h5>
-                                        <p>
-                                            {review.review}
-                                        </p>
+                                        <h5>{review.name + " reviewed on "}{moment(review.date).format("Do MMMM YYYY")}</h5>
+                                        <p>{review.review}</p>
                                         {props.user && props.user.id === review.user_id &&//check if review belongs to user
                                             <Row>
                                                 <Col><Link to={{
                                                     pathname: "/movies/" + props.match.params.id + "/review",
-                                                    state: {
-                                                        currentReview: review
-                                                    }
+                                                    state: { currentReview: review}
                                                 }}>Edit</Link></Col>
                                                 <Col><Button variant="link" onClick={() => deleteReview(review._id, index)}>Delete</Button></Col>
                                             </Row>
