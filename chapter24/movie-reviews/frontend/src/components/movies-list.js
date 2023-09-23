@@ -20,16 +20,12 @@ const MoviesList = props => {
    }, [currentSearchMode])//add useEffect whenever currentSearchMode changes
 
    useEffect(() => {
-      retrieveMovies()
-      retrieveRatings()
-   }, [])
+      //  retrieveMovies()
+        retrieveNextPage()
+        // eslint-disable-next-line
+     }, [currentPage])//when currentPage changes value: retrieveMovies will be called
 
-   useEffect(() => {
-      retrieveMovies()
-   }, [currentPage])//when currentPage changes value: retrieveMovies will be called
-
-
-   const retrieveNextPage = () => {
+     const retrieveNextPage = () => {
       if (currentSearchMode === "findByTitle")
          findByTitle()
       else if (currentSearchMode === "findByRating")
@@ -38,6 +34,13 @@ const MoviesList = props => {
          retrieveMovies()
    }
 
+   useEffect(() => {
+      retrieveMovies()
+      retrieveRatings()
+       // eslint-disable-next-line
+   }, [])
+
+   
    const retrieveMovies = () => {
       setCurrentSearchMode("")
       MovieDataService.getAll(currentPage)
