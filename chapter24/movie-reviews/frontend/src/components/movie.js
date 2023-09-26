@@ -34,11 +34,11 @@ const Movie = props => {
       //identify review by review and user ids
       MovieDataService.deleteReview(reviewId, props.user.id)
          .then(response => {
-            setMovie((prevState) => {
+            setMovie((currState) => {
                //put index into splice method to remove that review from list/database
-               prevState.reviews.splice(index, 1)
+               currState.reviews.splice(index, 1)
                return ({
-                  ...prevState
+                  ...currState
                })
             })
          })
