@@ -1,26 +1,17 @@
-// eslint-disable-next-line
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-// eslint-disable-next-line
 import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-// eslint-disable-next-line
 import AddReview from "./components/add-review";
-// eslint-disable-next-line
 import MoviesList from "./components/movies-list";
-// eslint-disable-next-line
 import Movie from "./components/movie";
-// eslint-disable-next-line
 import Login from "./components/login";
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import {Nav, Navbar} from 'react-bootstrap';
 
 
 function App() {
   const [user, setUser] = React.useState(null);
 
-  // eslint-disable-next-line
   async function login(user = null) {
     setUser(user);
   }

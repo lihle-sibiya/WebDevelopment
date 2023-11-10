@@ -6,8 +6,8 @@ import { Form, Button } from 'react-bootstrap';
 
 const AddReview = props => {
 
-   let editing = false
-   let initialReviewState = ''
+   let editing = false;
+   let initialReviewState = '';
 
    //checks state to allow for editting to occur
    if (props.location.state && props.location.state.currentReview) {
@@ -60,7 +60,6 @@ const AddReview = props => {
 
    return (
       <div>
-         {/* uses a ternary operator */}
          {submitted ? (
             <div>
                <h4>Review submitted successfully</h4>

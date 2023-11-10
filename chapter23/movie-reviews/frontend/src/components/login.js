@@ -43,9 +43,7 @@ const Login = props => {
                   onChange={onChangeId}
                />
             </Form.Group>
-            <Button variant="primary" onClick={login}>
-               Submit
-            </Button>
+            <Button variant="primary" onClick={login}>Submit</Button>
          </Form>
       </div>
    )
